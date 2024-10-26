@@ -10,9 +10,9 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 30.h, bottom: 30.h),
             child: Column(
