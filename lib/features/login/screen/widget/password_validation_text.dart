@@ -7,15 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PasswordValidationText extends StatelessWidget {
   const PasswordValidationText({
     super.key,
-    required this.hasLowercase,
-    required this.hasUppercase,
+    required this.hasLowerCase,
+    required this.hasUpperCase,
     required this.hasSpecialChar,
     required this.hasNumber,
     required this.hasMinLength,
   });
 
-  final bool hasLowercase;
-  final bool hasUppercase;
+  final bool hasLowerCase;
+  final bool hasUpperCase;
   final bool hasSpecialChar;
   final bool hasNumber;
   final bool hasMinLength;
@@ -26,9 +26,9 @@ class PasswordValidationText extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: Column(
         children: [
-          buildValidationRow('At least 1 lowercase letter', hasLowercase),
+          buildValidationRow('At least 1 lowercase letter', hasLowerCase),
           verticalSpace(2),
-          buildValidationRow('At least 1 uppercase letter', hasUppercase),
+          buildValidationRow('At least 1 uppercase letter', hasUpperCase),
           verticalSpace(2),
           buildValidationRow('At least 1 special character', hasSpecialChar),
           verticalSpace(2),

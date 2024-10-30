@@ -88,8 +88,8 @@ class _LoginFormState extends State<LoginForm> {
           ),
           verticalSpace(6),
           PasswordValidationText(
-            hasLowercase: hasLowercase,
-            hasUppercase: hasUppercase,
+            hasLowerCase: hasLowercase,
+            hasUpperCase: hasUppercase,
             hasNumber: hasNumber,
             hasSpecialChar: hasSpecialChar,
             hasMinLength: hasMinLength,
