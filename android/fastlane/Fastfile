@@ -22,11 +22,11 @@ platform :android do
     sh "flutter build apk --release --flavor production -t lib/main_production.dart --obfuscate --shrink --tree-shake-icons --split-debug-info=debug-info"
     firebase_app_distribution(
       app: "1:312330554385:android:945cf66fc1c2b1a61db5b0",
-      firebase_cli_token: "1//03zq5cKPKo2YZCgYIARAAGAMSNwF-L9Ir59kHFz-xF_3OwIuUlBv6Y8ZUCTiygfwWojuQU9GgCkKteZ8R7aIpJBJ5YXzoD1FNFe8",
+      firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: "gfg77722@gmail.com",
-      release_notes: "First Fastlane Firebase App Distribution"
+      release_notes: "First Fastlane Firebase App Distribution" 
       # groups: "qa-team, trusted-testers"
   )
   end
