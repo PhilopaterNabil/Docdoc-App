@@ -26,15 +26,9 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: "3.4.2"
-        bundler-cache: false
+        ruby-version: "3.2.3"
+        bundler-cache: true
         working-directory: android
-
-    - name: Ensure Linux Compatibility
-      run: |
-        bundle lock --add-platform x86_64-linux
-        bundle install --jobs 4 --retry 3
-      working-directory: android
 
     - name: Build and Distribute App
       env:
