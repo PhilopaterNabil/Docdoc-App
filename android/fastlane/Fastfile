@@ -1,0 +1,48 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Lane for Android Firebase App Distribution"
+  lane :firebase_distribution do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production -t lib/main_production.dart --obfuscate --shrink --tree-shake-icons --split-debug-info=debug-info"
+    firebase_app_distribution(
+      app: "1:312330554385:android:945cf66fc1c2b1a61db5b0",
+      firebase_cli_token: "1//03zq5cKPKo2YZCgYIARAAGAMSNwF-L9Ir59kHFz-xF_3OwIuUlBv6Y8ZUCTiygfwWojuQU9GgCkKteZ8R7aIpJBJ5YXzoD1FNFe8",
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+      testers: "gfg77722@gmail.com",
+      release_notes: "First Fastlane Firebase App Distribution"
+      # groups: "qa-team, trusted-testers"
+  )
+  end
+
+  # desc "Submit a new Beta Build to Crashlytics Beta"
+  # lane :beta do
+  #   gradle(task: "clean assembleRelease")
+  #   crashlytics
+  
+  #   # sh "your_script.sh"
+  #   # You can also use other beta testing services here
+  # end
+
+  # desc "Deploy a new version to the Google Play"
+  # lane :deploy do
+  #   gradle(task: "clean assembleRelease")
+  #   upload_to_play_store
+  # end
+end
