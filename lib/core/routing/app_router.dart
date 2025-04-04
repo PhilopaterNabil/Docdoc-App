@@ -11,12 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
-    final arguments = settings.arguments;
+    // final arguments = settings.arguments;
 
     switch (settings.name) {
       case Routes.onBoardingScreen:
-        return MaterialPageRoute(
-            builder: (context) => const OnboardingScreen());
+        return MaterialPageRoute(builder: (context) => const OnboardingScreen());
       case Routes.loginScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -31,9 +30,8 @@ class AppRouter {
             child: const SignUpScreen(),
           ),
         );
-        case Routes.homeScreen:
-        return MaterialPageRoute(
-            builder: (context) => const HomeScreen());
+      case Routes.homeScreen:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

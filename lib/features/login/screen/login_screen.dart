@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
                 verticalSpace(40),
                 AppTextButton(
                   buttonText: 'Login',
-                  onPressed: () => vaildateThenDoLogin(context),
+                  onPressed: context.read<LoginCubit>().emitLoginStates,
                 ),
                 verticalSpace(16),
                 const TermsAndConditionsText(),
@@ -41,11 +41,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void vaildateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginSuccess();
-    }
   }
 }

@@ -16,6 +16,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool isObscure = true;
+  late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
   bool hasLowercase = false;
@@ -27,6 +28,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     super.initState();
+    _emailController = context.read<LoginCubit>().emailController;
     _passwordController = context.read<LoginCubit>().passwordController;
     setuoPasswordControllerListener();
   }
@@ -57,10 +59,9 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           AppTextFormField(
             hintText: 'Email',
+            controller: _emailController,
             validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isEmailValid(value)) {
+              if (value == null || value.isEmpty || !AppRegex.isEmailValid(value)) {
                 return 'Please enter your email';
               }
             },
