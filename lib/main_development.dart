@@ -6,7 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/routing/app_router.dart';
 
 void main() async {
-  setupGetIt();
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupGetIt();
   await ScreenUtil.ensureScreenSize();
   runApp(DocApp(appRouter: AppRouter()));
 }
