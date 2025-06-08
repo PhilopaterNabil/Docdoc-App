@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_advanced/core/networking/api_service.dart';
 import 'package:flutter_advanced/core/networking/dio_factory.dart';
 import 'package:flutter_advanced/features/home/data/apis/home_api_service.dart';
