@@ -4,8 +4,8 @@ import 'package:flutter_advanced/core/theming/styles.dart';
 import 'package:flutter_advanced/features/home/data/models/specializations_response_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DoctorCard extends StatelessWidget {
-  const DoctorCard({super.key, this.doctorModel});
+class DoctorsListViewItem extends StatelessWidget {
+  const DoctorsListViewItem({super.key, this.doctorModel});
 
   final Doctors? doctorModel;
 
