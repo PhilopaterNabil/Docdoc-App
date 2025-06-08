@@ -1,3 +1,4 @@
+import 'package:flutter_advanced/core/helpers/extensions.dart';
 import 'package:flutter_advanced/core/networking/api_error_handler.dart';
 import 'package:flutter_advanced/features/home/data/models/specializations_response_model.dart';
 import 'package:flutter_advanced/features/home/data/repos/home_repo.dart';
@@ -12,15 +13,37 @@ class HomeCubit extends Cubit<HomeState> {
 
   final HomeRepo _homeRepo;
 
+  List<SpecializationsData?>? specializationDataList = [];
+
   void getSpecializations() async {
     emit(const HomeState.specializationsLoading());
 
     final result = await _homeRepo.getSpecializations();
-    result.when(
-        success: (specializationsResponseModel) =>
-            emit(HomeState.specializationsSuccess(specializationsResponseModel)),
-        failure: (errorHandler) {
-          emit(HomeState.specializationsError(errorHandler));
-        });
+    result.when(success: (specializationsResponseModel) {
+      specializationDataList = specializationsResponseModel.specializationDataList;
+      // Default to first specialization
+      getDoctorsList(specializationId: specializationDataList?.first?.id);
+      emit(HomeState.specializationsSuccess(specializationDataList));
+    }, failure: (errorHandler) {
+      emit(HomeState.specializationsError(errorHandler));
+    });
+  }
+
+  void getDoctorsList({required int? specializationId}) async {
+    List<Doctors?>? doctorsList =
+        filterDoctorsListBySpecializationId(specializationId: specializationId);
+
+    if (!doctorsList.isNullOrEmpty()) {
+      emit(HomeState.doctorsSuccess(doctorsList));
+    } else {
+      emit(HomeState.doctorsError(ErrorHandler.handle('No doctors found for this specialization')));
+    }
+  }
+
+  /// Filters doctors by specialization ID from the specialization data list.
+  filterDoctorsListBySpecializationId({specializationId}) {
+    return specializationDataList!
+        .firstWhere((specialization) => specialization!.id == specializationId)
+        ?.doctorsList;
   }
 }
