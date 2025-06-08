@@ -19,19 +19,19 @@ mixin _$ApiResult<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(ErrorHandler errorHHandler) failure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? success,
-    TResult? Function(ErrorHandler errorHHandler)? failure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
-    TResult Function(ErrorHandler errorHHandler)? failure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,8 @@ mixin _$ApiResult<T> {
 
 /// @nodoc
 abstract class $ApiResultCopyWith<T, $Res> {
-  factory $ApiResultCopyWith(ApiResult<T> value, $Res Function(ApiResult<T>) then) =
+  factory $ApiResultCopyWith(
+          ApiResult<T> value, $Res Function(ApiResult<T>) then) =
       _$ApiResultCopyWithImpl<T, $Res, ApiResult<T>>;
 }
 
@@ -78,7 +79,8 @@ class _$ApiResultCopyWithImpl<T, $Res, $Val extends ApiResult<T>>
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<T, $Res> {
-  factory _$$SuccessImplCopyWith(_$SuccessImpl<T> value, $Res Function(_$SuccessImpl<T>) then) =
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl<T> value, $Res Function(_$SuccessImpl<T>) then) =
       __$$SuccessImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
@@ -88,7 +90,8 @@ abstract class _$$SuccessImplCopyWith<T, $Res> {
 class __$$SuccessImplCopyWithImpl<T, $Res>
     extends _$ApiResultCopyWithImpl<T, $Res, _$SuccessImpl<T>>
     implements _$$SuccessImplCopyWith<T, $Res> {
-  __$$SuccessImplCopyWithImpl(_$SuccessImpl<T> _value, $Res Function(_$SuccessImpl<T>) _then)
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl<T> _value, $Res Function(_$SuccessImpl<T>) _then)
       : super(_value, _then);
 
   /// Create a copy of ApiResult
@@ -129,7 +132,8 @@ class _$SuccessImpl<T> implements Success<T> {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   /// Create a copy of ApiResult
   /// with the given fields replaced by the non-null parameter values.
@@ -143,7 +147,7 @@ class _$SuccessImpl<T> implements Success<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(ErrorHandler errorHHandler) failure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return success(data);
   }
@@ -152,7 +156,7 @@ class _$SuccessImpl<T> implements Success<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? success,
-    TResult? Function(ErrorHandler errorHHandler)? failure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return success?.call(data);
   }
@@ -161,7 +165,7 @@ class _$SuccessImpl<T> implements Success<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
-    TResult Function(ErrorHandler errorHHandler)? failure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -210,22 +214,25 @@ abstract class Success<T> implements ApiResult<T> {
   /// Create a copy of ApiResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith => throw _privateConstructorUsedError;
+  _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$FailureImplCopyWith<T, $Res> {
-  factory _$$FailureImplCopyWith(_$FailureImpl<T> value, $Res Function(_$FailureImpl<T>) then) =
+  factory _$$FailureImplCopyWith(
+          _$FailureImpl<T> value, $Res Function(_$FailureImpl<T>) then) =
       __$$FailureImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({ErrorHandler errorHHandler});
+  $Res call({ApiErrorModel apiErrorModel});
 }
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<T, $Res>
     extends _$ApiResultCopyWithImpl<T, $Res, _$FailureImpl<T>>
     implements _$$FailureImplCopyWith<T, $Res> {
-  __$$FailureImplCopyWithImpl(_$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
+  __$$FailureImplCopyWithImpl(
+      _$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
       : super(_value, _then);
 
   /// Create a copy of ApiResult
@@ -233,13 +240,13 @@ class __$$FailureImplCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorHHandler = null,
+    Object? apiErrorModel = null,
   }) {
     return _then(_$FailureImpl<T>(
-      null == errorHHandler
-          ? _value.errorHHandler
-          : errorHHandler // ignore: cast_nullable_to_non_nullable
-              as ErrorHandler,
+      null == apiErrorModel
+          ? _value.apiErrorModel
+          : apiErrorModel // ignore: cast_nullable_to_non_nullable
+              as ApiErrorModel,
     ));
   }
 }
@@ -247,14 +254,14 @@ class __$$FailureImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$FailureImpl<T> implements Failure<T> {
-  const _$FailureImpl(this.errorHHandler);
+  const _$FailureImpl(this.apiErrorModel);
 
   @override
-  final ErrorHandler errorHHandler;
+  final ApiErrorModel apiErrorModel;
 
   @override
   String toString() {
-    return 'ApiResult<$T>.failure(errorHHandler: $errorHHandler)';
+    return 'ApiResult<$T>.failure(apiErrorModel: $apiErrorModel)';
   }
 
   @override
@@ -262,12 +269,12 @@ class _$FailureImpl<T> implements Failure<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl<T> &&
-            (identical(other.errorHHandler, errorHHandler) ||
-                other.errorHHandler == errorHHandler));
+            (identical(other.apiErrorModel, apiErrorModel) ||
+                other.apiErrorModel == apiErrorModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorHHandler);
+  int get hashCode => Object.hash(runtimeType, apiErrorModel);
 
   /// Create a copy of ApiResult
   /// with the given fields replaced by the non-null parameter values.
@@ -281,29 +288,29 @@ class _$FailureImpl<T> implements Failure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(ErrorHandler errorHHandler) failure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return failure(errorHHandler);
+    return failure(apiErrorModel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? success,
-    TResult? Function(ErrorHandler errorHHandler)? failure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return failure?.call(errorHHandler);
+    return failure?.call(apiErrorModel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
-    TResult Function(ErrorHandler errorHHandler)? failure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(errorHHandler);
+      return failure(apiErrorModel);
     }
     return orElse();
   }
@@ -341,12 +348,13 @@ class _$FailureImpl<T> implements Failure<T> {
 }
 
 abstract class Failure<T> implements ApiResult<T> {
-  const factory Failure(final ErrorHandler errorHHandler) = _$FailureImpl<T>;
+  const factory Failure(final ApiErrorModel apiErrorModel) = _$FailureImpl<T>;
 
-  ErrorHandler get errorHHandler;
+  ApiErrorModel get apiErrorModel;
 
   /// Create a copy of ApiResult
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith => throw _privateConstructorUsedError;
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }

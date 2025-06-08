@@ -38,8 +38,7 @@ class _SignupFormState extends State<SignupForm> {
       setState(() {
         hasLowercase = AppRegex.hasLowerCase(passwordController.text);
         hasUppercase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
+        hasSpecialCharacters = AppRegex.hasSpecialCharacter(passwordController.text);
         hasNumber = AppRegex.hasNumber(passwordController.text);
         hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
@@ -65,9 +64,7 @@ class _SignupFormState extends State<SignupForm> {
           AppTextFormField(
             hintText: 'Phone number',
             validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isPhoneNumberValid(value)) {
+              if (value == null || value.isEmpty || !AppRegex.isPhoneNumberValid(value)) {
                 return 'Please enter a valid phone number';
               }
             },
@@ -77,9 +74,7 @@ class _SignupFormState extends State<SignupForm> {
           AppTextFormField(
             hintText: 'Email',
             validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !AppRegex.isEmailValid(value)) {
+              if (value == null || value.isEmpty || !AppRegex.isEmailValid(value)) {
                 return 'Please enter a valid email';
               }
             },
@@ -114,14 +109,11 @@ class _SignupFormState extends State<SignupForm> {
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
-                  isPasswordConfirmationObscureText =
-                      !isPasswordConfirmationObscureText;
+                  isPasswordConfirmationObscureText = !isPasswordConfirmationObscureText;
                 });
               },
               child: Icon(
-                isPasswordConfirmationObscureText
-                    ? Icons.visibility_off
-                    : Icons.visibility,
+                isPasswordConfirmationObscureText ? Icons.visibility_off : Icons.visibility,
               ),
             ),
             validator: (value) {
@@ -144,7 +136,7 @@ class _SignupFormState extends State<SignupForm> {
   }
 
   @override
-  void dispose() {
+  void dispose() async {
     passwordController.dispose();
     super.dispose();
   }

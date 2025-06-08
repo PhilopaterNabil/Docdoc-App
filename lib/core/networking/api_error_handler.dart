@@ -1,3 +1,5 @@
+/*
+
 import 'package:dio/dio.dart';
 
 import 'api_constants.dart';
@@ -152,4 +154,45 @@ ApiErrorModel _handleError(DioException error) {
 class ApiInternalStatus {
   static const int SUCCESS = 0;
   static const int FAILURE = 1;
+}
+
+*/
+
+import 'package:dio/dio.dart';
+import 'package:flutter_advanced/core/networking/api_error_model.dart';
+
+class ApiErrorHandler {
+  static ApiErrorModel handle(dynamic error) {
+    if (error is DioException) {
+      switch (error.type) {
+        case DioExceptionType.connectionError:
+          return ApiErrorModel(message: 'Connection to the server failed');
+        case DioExceptionType.cancel:
+          return ApiErrorModel(message: 'Request to the server was cancelled');
+        case DioExceptionType.connectionTimeout:
+          return ApiErrorModel(message: 'Connection to the server timed out');
+        case DioExceptionType.receiveTimeout:
+          return ApiErrorModel(message: 'Receive timeout in connection with the Server');
+        case DioExceptionType.sendTimeout:
+          return ApiErrorModel(message: 'Send timeout in connection with API');
+        case DioExceptionType.badCertificate:
+          return ApiErrorModel(message: 'Bad certificate in connection with API');
+        case DioExceptionType.badResponse:
+          return _handleError(error.response?.data);
+        case DioExceptionType.unknown:
+          return ApiErrorModel(message: 'Unexpected error occurred');
+      }
+    } else {
+      // Handle other types of errors (e.g., non-Dio exceptions)
+      return ApiErrorModel(message: 'An unexpected error occurred');
+    }
+  }
+}
+
+ApiErrorModel _handleError(dynamic data) {
+  return ApiErrorModel(
+    code: data['code'],
+    message: data['message'] ?? 'An error occurred',
+    errors: data['data'],
+  );
 }

@@ -18,9 +18,9 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
-          child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

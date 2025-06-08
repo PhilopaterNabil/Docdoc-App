@@ -18,7 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
   void emitLoginStates() async {
     if (!formKey.currentState!.validate()) return;
 
-    emit(const LoginState.loading());
+    emit(const LoginState.loginLoading());
     final response = await _loginRepo.login(
       LoginRequestBody(
         email: emailController.text,
@@ -28,9 +28,9 @@ class LoginCubit extends Cubit<LoginState> {
     response.when(
       success: (loginResponse) async {
         await saveUserToken(loginResponse.userData!.token!);
-        emit(LoginState.success(loginResponse));
+        emit(LoginState.loginSuccess(loginResponse));
       },
-      failure: (error) => emit(LoginState.error(error: error.apiErrorModel.message ?? '')),
+      failure: (apiErrorModel) => emit(LoginState.loginError(apiErrorModel)),
     );
   }
 
@@ -41,8 +41,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   @override
   Future<void> close() {
-    emailController.dispose();
-    passwordController.dispose();
+    if (emailController.hasListeners) emailController.dispose();
+    if (passwordController.hasListeners) passwordController.dispose();
     return super.close();
   }
 }
